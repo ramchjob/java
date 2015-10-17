@@ -186,4 +186,27 @@ public class Employee extends BaseObject implements Serializable {
       return true;
    }
 
+   @Override
+   public String toString() {
+      StringBuilder builder = new StringBuilder();
+      builder.append("Employee [empId=");
+      builder.append(empId);
+      builder.append(", empDob=");
+      builder.append(empDob);
+      builder.append(", empFirstName=");
+      builder.append(empFirstName);
+      builder.append(", empLastName=");
+      builder.append(empLastName);
+      builder.append(", empStartDt=");
+      builder.append(empStartDt);
+      builder.append(", empWorkEmailid=");
+      builder.append(empWorkEmailid);
+      builder.append(", status=");
+      builder.append(status);
+      builder.append(", employeeRoles=");
+      builder.append(employeeRoles);
+      builder.append("]");
+      return builder.toString();
+   }
+
 }

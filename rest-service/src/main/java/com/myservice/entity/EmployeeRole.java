@@ -68,4 +68,17 @@ public class EmployeeRole extends BaseObject {
       this.role = role;
    }
 
+   @Override
+   public String toString() {
+      StringBuilder builder = new StringBuilder();
+      builder.append("EmployeeRole [employeeRoleId=");
+      builder.append(employeeRoleId);
+      builder.append(", employee=");
+      builder.append(employee);
+      builder.append(", role=");
+      builder.append(role);
+      builder.append("]");
+      return builder.toString();
+   }
+
 }
