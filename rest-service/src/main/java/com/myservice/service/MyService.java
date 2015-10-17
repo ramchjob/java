@@ -13,20 +13,17 @@ import javax.ws.rs.core.MediaType;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.myservice.dao.EmployeeDao;
 import com.myservice.entity.Employee;
 import com.myservice.model.Numbers;
 
-@Service
-@Transactional
+@Component
 public class MyService {
    private static final Logger LOGGER = Logger.getLogger(MyService.class);
    @Autowired
-   private EmployeeDao employeeDao;
+   private EmployeeService employeeService;
 
    Numbers myNumbers = new Numbers();
 
@@ -48,7 +45,7 @@ public class MyService {
    @Produces({ MediaType.APPLICATION_JSON })
    public Employee getEmployee(@QueryParam("employeeId") String employeeId) {
       LOGGER.debug("Request received to retrieve employee with id " + employeeId);
-      Employee emp = employeeDao.getById(employeeId);
+      Employee emp = employeeService.getEmployeeById(employeeId);
 
       return emp;
    }
@@ -57,8 +54,9 @@ public class MyService {
    @Path("/employee")
    @Consumes({ MediaType.APPLICATION_JSON })
    public String saveEmployee(@RequestBody Employee employee) {
-      LOGGER.debug(employee.toString());
-      String empId = employeeDao.save(employee);
+      LOGGER.debug("Request received for employee creation with employee first name "
+            + employee.getEmpFirstName());
+      String empId = employeeService.createEmployee(employee);
       return empId;
    }
 

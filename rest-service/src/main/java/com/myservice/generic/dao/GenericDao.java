@@ -3,6 +3,9 @@ package com.myservice.generic.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 public interface GenericDao<E extends Serializable, I extends Serializable> {
 
    void delete(E persistentInstance);
