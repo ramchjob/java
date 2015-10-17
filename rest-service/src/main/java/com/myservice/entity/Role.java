@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(name = "role")
 public class Role extends BaseObject {
@@ -22,6 +24,7 @@ public class Role extends BaseObject {
    @Column(name = "ROLE_CD")
    private String roleCode;
 
+   @JsonIgnore
    @Column(name = "ROLE_DESC")
    private String roleDesc;
 

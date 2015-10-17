@@ -3,7 +3,9 @@ package com.myservice.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -13,6 +15,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.myservice.dao.EmployeeDao;
 import com.myservice.entity.Employee;
@@ -48,6 +51,15 @@ public class MyService {
       Employee emp = employeeDao.getById(employeeId);
 
       return emp;
+   }
+
+   @POST
+   @Path("/employee")
+   @Consumes({ MediaType.APPLICATION_JSON })
+   public String saveEmployee(@RequestBody Employee employee) {
+      LOGGER.debug(employee.toString());
+      String empId = employeeDao.save(employee);
+      return empId;
    }
 
 }

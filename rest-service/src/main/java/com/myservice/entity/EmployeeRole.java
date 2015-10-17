@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -31,6 +32,7 @@ public class EmployeeRole extends BaseObject {
    @Column(name = "EMP_ROLE_ID")
    @GenericGenerator(name = "Idgenrole", strategy = "increment")
    @GeneratedValue(generator = "Idgenrole")
+   @JsonIgnore
    private int employeeRoleId;
 
    @ManyToOne

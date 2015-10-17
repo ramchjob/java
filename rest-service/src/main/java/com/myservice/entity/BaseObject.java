@@ -8,7 +8,10 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 @MappedSuperclass
+@JsonIgnoreProperties({ "createdBy", "createdDate", "modifiedBy", "modifiedDate" })
 public class BaseObject implements Serializable {
 
    private static final long serialVersionUID = 1L;
