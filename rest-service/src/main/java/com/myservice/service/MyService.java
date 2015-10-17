@@ -10,6 +10,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,11 +55,21 @@ public class MyService {
    @POST
    @Path("/employee")
    @Consumes({ MediaType.APPLICATION_JSON })
-   public String saveEmployee(@RequestBody Employee employee) {
+   public Response saveEmployee(@RequestBody Employee employee) {
+
       LOGGER.debug("Request received for employee creation with employee first name "
             + employee.getEmpFirstName());
-      String empId = employeeService.createEmployee(employee);
-      return empId;
-   }
 
+      try {
+         String empId = employeeService.createEmployee(employee);
+         LOGGER.debug("employee created with employee ID  " + empId);
+      }
+      catch (Exception e) {
+         LOGGER.debug("Excpetion while creating new employee " + e.getCause().getMessage());
+
+         return Response.status(Status.BAD_REQUEST).build();
+      }
+      return Response.status(Status.CREATED).build();
+
+   }
 }
