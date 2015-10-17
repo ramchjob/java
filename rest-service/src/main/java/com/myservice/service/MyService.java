@@ -9,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,7 @@ import com.myservice.model.Numbers;
 @Service
 @Transactional
 public class MyService {
-
+   private static final Logger LOGGER = Logger.getLogger(MyService.class);
    @Autowired
    private EmployeeDao employeeDao;
 
@@ -43,7 +44,9 @@ public class MyService {
    @Path("/employee")
    @Produces({ MediaType.APPLICATION_JSON })
    public Employee getEmployee(@QueryParam("employeeId") String employeeId) {
+      LOGGER.debug("Request received to retrieve employee with id " + employeeId);
       Employee emp = employeeDao.getById(employeeId);
+
       return emp;
    }
 

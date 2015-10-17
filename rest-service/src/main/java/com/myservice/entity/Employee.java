@@ -2,14 +2,22 @@ package com.myservice.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "employee")
@@ -38,8 +46,13 @@ public class Employee extends BaseObject implements Serializable {
    @Column(name = "EMP_WORK_EMAILID")
    private String empWorkEmailid;
 
-   public Employee() {
-   }
+   @Column(name = "STATUS_CODE")
+   private String status;
+
+   @OneToMany(fetch = FetchType.EAGER, mappedBy = "employee", cascade = CascadeType.ALL)
+   @Fetch(FetchMode.SELECT)
+   @JsonManagedReference
+   private List<EmployeeRole> employeeRoles;
 
    public String getEmpId() {
       return this.empId;
@@ -87,6 +100,22 @@ public class Employee extends BaseObject implements Serializable {
 
    public void setEmpWorkEmailid(String empWorkEmailid) {
       this.empWorkEmailid = empWorkEmailid;
+   }
+
+   public String getStatus() {
+      return status;
+   }
+
+   public void setStatus(String status) {
+      this.status = status;
+   }
+
+   public List<EmployeeRole> getEmployeeRoles() {
+      return employeeRoles;
+   }
+
+   public void setEmployeeRoles(List<EmployeeRole> employeeRoles) {
+      this.employeeRoles = employeeRoles;
    }
 
    @Override

@@ -1,5 +1,11 @@
+Java version:1.7
+
 This is simple restful service with cxf implementation.
 A simple GET service from db (Using hibernate) to pull the employee record from db and send the same in JSON format.
+
+Employee
+Employee_Status (one to one)
+Employee_Roles (One to Many)
 
 Consist of below frameworks:
 	Spring
