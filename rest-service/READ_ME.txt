@@ -1,7 +1,7 @@
 Java version:1.7
 
 This is simple restful service with cxf implementation.
-A simple GET service from db (Using hibernate) to pull the employee record from db and send the same in JSON format.
+A simple GET/POST/PUT/DELETE services to perform CRUS operations..
 
 Employee
 Employee_Status (one to one)
@@ -13,4 +13,3 @@ Consist of below frameworks:
 	CXF
 	Log4j
 	
-POST/PUT/DELETE will be implemented soon.

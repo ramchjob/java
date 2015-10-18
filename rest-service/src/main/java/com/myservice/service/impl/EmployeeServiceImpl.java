@@ -25,4 +25,12 @@ public class EmployeeServiceImpl implements EmployeeService {
       return employeeDao.save(employee);
    }
 
+   public void updateEmployee(Employee employee) {
+
+      employeeDao.update(employee);
+   }
+
+   public void deleteEmployee(String employeeId) {
+      employeeDao.deleteById(employeeId);
+   }
 }

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -70,6 +72,46 @@ public class MyService {
          return Response.status(Status.BAD_REQUEST).build();
       }
       return Response.status(Status.CREATED).build();
+
+   }
+
+   @PUT
+   @Path("/employee")
+   @Consumes({ MediaType.APPLICATION_JSON })
+   public Response updateEmployee(@RequestBody Employee employee) {
+
+      LOGGER.debug("Request received for employee updation with employee first name "
+            + employee.getEmpFirstName());
+
+      try {
+         employeeService.updateEmployee(employee);
+         LOGGER.debug("employee updated with employee ID  " + employee.getEmpId());
+      }
+      catch (Exception e) {
+         LOGGER.debug("Excpetion while creating new employee " + e.getCause().getMessage());
+
+         return Response.status(Status.BAD_REQUEST).build();
+      }
+      return Response.status(Status.OK).build();
+
+   }
+
+   @DELETE
+   @Path("/employee")
+   public Response deleteEmployee(@QueryParam("employeeId") String employeeId) {
+
+      LOGGER.debug("Request received for employee deletion with employee id " + employeeId);
+
+      try {
+         employeeService.deleteEmployee(employeeId);
+         LOGGER.debug("employee deleted with employee ID  " + employeeId);
+      }
+      catch (Exception e) {
+         LOGGER.debug("Excpetion while creating new employee " + e.getCause().getMessage());
+
+         return Response.status(Status.BAD_REQUEST).build();
+      }
+      return Response.status(Status.OK).build();
 
    }
 }
