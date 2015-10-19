@@ -17,5 +17,4 @@
 	<import resource="classpath:rest-service.xml" />
 	<import resource="classpath:hibernate.cfg.xml"/>
 	
-	<bean name="employeeAspect" class="com.myservice.aspect.EmployeeAspect" />
 </beans>
