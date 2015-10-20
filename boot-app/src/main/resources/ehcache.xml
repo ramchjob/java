@@ -1,0 +1,25 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+	monitoring="autodetect" dynamicConfig="true">
+ 
+	<!-- By default, Ehcache stored the cached files in temp folder. -->
+
+	<diskStore path="java.io.tmpdir"/>
+ 
+	<cache
+    name="lmp"
+    maxElementsInMemory="10000"
+    eternal="false"
+    timeToIdleSeconds="300"
+    timeToLiveSeconds="600"
+    overflowToDisk="true"/>
+    
+    
+ 	<defaultCache eternal="false" 
+ 	
+ 	overflowToDisk="false" 
+ 	diskPersistent="false" 
+ 	timeToIdleSeconds="0" 
+ 	timeToLiveSeconds="600" 
+ 	memoryStoreEvictionPolicy="LRU" />
+</ehcache>
